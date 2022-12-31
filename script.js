@@ -1,30 +1,68 @@
+// Theme toggle
+document.getElementById("toggle").addEventListener("click", function () {
+  document.getElementsByTagName("body")[0].classList.toggle("dark-theme")
+})
+
 // Initial references
 const optionsContainer = document.getElementById("options-container")
 const letterContainer = document.getElementById("letter-container")
 const userInputSection = document.getElementById("user-input-section")
 const newGameContainer = document.getElementById("new-game-container")
+const confettiContainer = document.getElementById("confetti")
 const resultText = document.getElementById("result-text")
 const newGameButton = document.getElementById("new-game-button")
 const canvas = document.getElementById("canvas")
+
+// Importing audio files
+let audioSelectOption = new Audio("./audio/select-option.wav")
+let audioCorrectLetter = new Audio("./audio/correct-letter.wav")
+let audioWrongLetter = new Audio("./audio/wrong-letter.wav")
+let audioWinGame = new Audio("./audio/win.wav")
+let audioLoseGame = new Audio("./audio/lose.wav")
+let audioNewGame = new Audio("./audio/new-game.wav")
 
 // Options values for buttons
 let options = {
   fruits: [
     "Apple",
     "Blueberry",
-    "Mandarin",
+    "Banana",
     "Pineapple",
     "Pomegranate",
     "Watermelon",
+    "Mango",
+    "Orange",
+    "Guava",
+    "Papaya",
   ],
-  animals: ["Hedgehog", "Rhinoceros", "Squirrel", "Panther", "Walrus", "Zebra"],
+  animals: [
+    "Lion",
+    "Rhinoceros",
+    "Tiger",
+    "Hippopotamus",
+    "Horse",
+    "Zebra",
+    "Elephant",
+    "Donkey",
+    "Gorilla",
+    "Shark",
+  ],
   countries: [
     "India",
-    "Hungary",
-    "Kyrgyzstan",
+    "Australia",
+    "Brazil",
     "Switzerland",
     "Zimbabwe",
-    "Dominica",
+    "Canada",
+    "China",
+    "France",
+    "Mexico",
+    "Indonesia",
+    "Germany",
+    "Japan",
+    "Austria",
+    "Egypt",
+    "Malaysia",
   ],
 }
 
@@ -63,6 +101,8 @@ const blocker = () => {
 
 // Word generator
 const generateWord = (optionValue) => {
+  // Play audio
+  audioSelectOption.play()
   let optionsButtons = document.querySelectorAll(".options")
   // If optionValue matches the button innerText then highlight the button
   optionsButtons.forEach((button) => {
@@ -80,7 +120,6 @@ const generateWord = (optionValue) => {
   // choose a random word
   chosenWord = optionArray[Math.floor(Math.random() * optionArray.length)]
   chosenWord = chosenWord.toUpperCase()
-  console.log(chosenWord)
 
   // replace every letter with a span containing a dash
   let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>')
@@ -116,6 +155,8 @@ const initializer = () => {
         charArray.forEach((char, index) => {
           // If a character in the array is the same as the clicked alphabet
           if (char === button.innerText) {
+            // Play audio
+            audioCorrectLetter.play()
             // Replace the dash with the alphabet
             dashes[index].innerText = char
             // Increment the counter
@@ -123,12 +164,18 @@ const initializer = () => {
             // If the winCount equals the word length
             if (winCount == charArray.length) {
               resultText.innerHTML = `<h2 class='win-msg'>You Win!!</h2><p>The word was <span>${chosenWord}</span></p>`
+              // Play audio
+              audioWinGame.play()
+              // Show Confetti
+              confettiContainer.classList.remove("hide")
               // Block all the buttons
               blocker()
             }
           }
         })
       } else {
+        // Play audio
+        audioWrongLetter.play()
         // Lose count
         count += 1
         // For drawing a man
@@ -136,6 +183,10 @@ const initializer = () => {
         // count == 6 because head + body + left arm + right arm + left leg + right leg
         if (count == 6) {
           resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!</h2><p>The word was <span>${chosenWord}</span></p>`
+          // Play audio
+          audioLoseGame.play()
+          // Show Confetti
+          confettiContainer.classList.add("hide")
           // Block all the buttons
           blocker()
         }

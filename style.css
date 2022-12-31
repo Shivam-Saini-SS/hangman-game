@@ -22,9 +22,43 @@ html {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  padding: 3em;
+  padding: 0 3em 3em;
   border-radius: 0.6em;
   box-shadow: 0 1.2em 2.4em rgba(111, 85, 0, 0.25);
+}
+
+.theme-button {
+  width: 100%;
+  position: relative;
+  padding: 1.5em 0;
+  margin-top: 2rem;
+}
+
+#toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 25px;
+  width: 50px;
+  background-color: #15181f;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  border-radius: 15px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+#toggle:after {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #ffffff;
+  top: 5px;
+  left: 7px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
 }
 
 #options-container {
@@ -48,8 +82,8 @@ html {
 }
 
 #options-container button:disabled {
-  border: 2px solid #808080;
-  background-color: #efefef;
+  border: 2px solid #adb5bd;
+  background-color: transparent;
   color: #808080;
 }
 
@@ -71,7 +105,12 @@ html {
   height: 2.4em;
   width: 2.4em;
   border-radius: 0.3em;
-  background-color: #ffffff;
+  background-color: #f4c531;
+  color: black;
+}
+
+#letter-container button:disabled {
+  opacity: 0;
 }
 
 .new-game-popup {
@@ -134,4 +173,62 @@ canvas {
 
 .lose-msg {
   color: #fe5152;
+}
+
+/* **************** */
+/* DARK THEME START */
+/* **************** */
+
+.dark-theme {
+  background-color: #495057;
+  color: #e5e5e5;
+}
+
+.dark-theme .container {
+  background-color: #212529;
+  box-shadow: 0 1.2em 2.4em rgba(33, 37, 41, 0.5);
+}
+
+.dark-theme #toggle {
+  background-color: #868e96;
+}
+
+.dark-theme #toggle:after {
+  background-color: transparent;
+  box-shadow: 11px 10px #fff;
+  top: -4px;
+  left: 18px;
+}
+
+.dark-theme #options-container button {
+  background-color: #495057;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.dark-theme #options-container button.active {
+  background-color: #adb5bd;
+  border-color: #868e96;
+  color: #000000;
+}
+
+.dark-theme #letter-container button {
+  background-color: #adb5bd;
+  border-color: #868e96;
+  color: #000000;
+}
+
+.dark-theme canvas {
+  border-color: #ffffff;
+  background-color: #868e96;
+}
+
+.dark-theme .new-game-popup {
+  background-color: #212529;
+}
+
+.dark-theme #new-game-button {
+  background-color: #adb5bd;
+  border-color: #868e96;
+  color: #000000;
 }
