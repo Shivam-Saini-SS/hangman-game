@@ -232,3 +232,34 @@ canvas {
   border-color: #868e96;
   color: #000000;
 }
+
+@media (max-width: 800px) {
+  canvas {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  canvas {
+    width: 90%;
+  }
+
+  #options-container div {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #options-container button {
+    width: 8em;
+    margin-top: 1em;
+  }
+
+  #options-container button:disabled {
+    display: none;
+  }
+
+  #options-container button.active {
+    display: block;
+  }
+}
