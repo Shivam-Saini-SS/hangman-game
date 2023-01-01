@@ -16,7 +16,7 @@ The main logic of this game revolves around the effective use of DOM manipulatio
 
 ## Would you like to have a hands-on?
 
-Don't hit the URL - [Guess the Number](https://hangman-the-wordle-game.netlify.app/)
+Don't hit the URL - [The Hangman Game](https://hangman-the-wordle-game.netlify.app/)
 
 <h2 align="center">🤝 Support</h2>
 
